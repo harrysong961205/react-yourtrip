@@ -35,7 +35,9 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <Headline onChangeMode={function(){alert('Lets go!!')}}></Headline>
+    <Headline onChangeMode={function(){
+      alert('Lets go!!');
+    }}></Headline>
     <Description title ="enjoy!" 
     body = "유어트립입니다."></Description>
     <Deeplink topics={topics}></Deeplink>
