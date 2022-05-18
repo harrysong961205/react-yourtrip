@@ -44,7 +44,7 @@ function Deeplink(props){
   </nav>
 }
 function Details(props){
-  const [mode,mode2] = useState('home');
+  const [mode,setState] = useState('home');
 
   let content = null;
   if (mode ==='home'){
@@ -64,13 +64,13 @@ root.render(
   <StrictMode>
     <Headline onChangeMode={()=>{
       ///alert('Lets go!!');
-      mode2('home');
+      setState('home');
     }}></Headline>
     <Description title ="enjoy!" 
     body = "유어트립입니다."></Description>
     <Deeplink topics={topics} onChangeMode={(title)=>{
       ///alert("hi");
-      modify('para');
+      setstate('para');
       }}></Deeplink>
     <Details></Details>
 
