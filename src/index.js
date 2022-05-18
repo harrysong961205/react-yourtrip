@@ -8,8 +8,17 @@ const topics=[
 ]
 
 function Headline(props){
-  return <App />
+  return (
+    <div>
+      <h1>안녕하세요</h1>
+      <p><a href="/" onClick={function(event){
+        event.preventDefault();
+        props.onChangeMode();
+      }}>Start with your trip :)</a></p>
+    </div>
+  );
 }
+
 function Description(props){
   return <article>
   <h2>{props.title}</h2>
