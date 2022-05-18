@@ -1,6 +1,7 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import {useState} from 'react';
 const topics=[
   {id:1, title:"여행"},
   {id:2, title:"맛집"},
@@ -29,13 +30,30 @@ function Deeplink(props){
   const lis =[]
   for(let i=0; i<props.topics.length; i++){
     let t = props.topics[i];
-    lis.push(<li key={t.id}><a href = {'/read/'+t.id}>{t.title}</a></li>)
+    lis.push(<li key={t.id}>
+      <a title = {t.title} href = {'/read/'+t.id} onClick={(event)=>{
+        event.preventDefault();
+        props.onChangeMode(event.target.title);
+      }}>
+        {t.title}</a></li>)
   }
   return<nav> 
   <ol>
     {lis}
   </ol>
   </nav>
+}
+function Details(props){
+  const [mode,mode2] = useState('home');
+
+  let content = null;
+  if (mode ==='home'){
+    content =<h3>Hello<p>home입니다</p></h3>
+  }else if(mode ==='para'){
+    content =<h3>Hello<p>para입니다</p></h3>}
+  return<h2>
+    {content}</h2>
+  
 }
 
 const rootElement = document.getElementById('root');
@@ -44,12 +62,17 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <Headline onChangeMode={function(){
-      alert('Lets go!!');
+    <Headline onChangeMode={()=>{
+      ///alert('Lets go!!');
+      mode2('home');
     }}></Headline>
     <Description title ="enjoy!" 
     body = "유어트립입니다."></Description>
-    <Deeplink topics={topics}></Deeplink>
+    <Deeplink topics={topics} onChangeMode={(title)=>{
+      ///alert("hi");
+      modify('para');
+      }}></Deeplink>
+    <Details></Details>
 
   </StrictMode>
 );
